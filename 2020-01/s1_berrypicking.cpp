@@ -37,10 +37,12 @@ Then fill buckets with the leftover. Do this for b = 1,...,max(Bi).
 */
 
 // include file io library
+// google "cpp include", "cpp iostream"
 #include <iostream>
 // include standard algorithms
 #include <algorithm>
 // use standard namespace
+// google "cpp namespace"
 using namespace std;
 
 // reserve memory for ints called N, K.
@@ -59,17 +61,21 @@ bool cmp(int a, int b)
   // true => a comes before b
   // so this function tells the sorting function to decreasing order of
   // residue mod mod.
+  // google "modulo math"
   return (a % mod) > (b % mod);
 }
 
 // program entry point
+// google "cpp int main"
 int main()
 {
   // use cin to read from berries.in
+  // google "cpp freopen"
   freopen("berries.in", "r", stdin);
   // use cout to write to berries.out
   freopen("berries.out", "w", stdout);
   // stream in N=num trees and K=num buckets from berries.in
+  // google "cpp cin"
   cin >> N >> K;
   // initialize max(Bi) = 0
   int M = 0;
@@ -113,6 +119,7 @@ int main()
     // Note: in this function, A refers to iterator (google cpp iterator) pointing
     // to start of array A in memory. A+N is iterator pointing to Nth position
     // after A (in this case the end of A).
+    // google "cpp std sort"
     sort(A, A + N, cmp);
     // get current number of berries for bessie: we have 'full' num
     // of filled buckets, subtract out K/2 buckets for Elsie, multiply
