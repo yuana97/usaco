@@ -8,7 +8,7 @@ Return the maximum number of berries Bessie can collect for herself.
 Solution:
   Setup:
   Let b be the minimum number of berries in a bucket Elsie receives. Without loss of
-  generality assume all Elsie's buckets contain exactly b berries (it doesn't help Bessie
+  generality (google "without loss of generality") assume all Elsie's buckets contain exactly b berries (it doesn't help Bessie
   to give Elsie more than b berries per bucket). Now our goal is the maximize the number of berries
   placed into K buckets of size at most b such that K/2 buckets have exactly b berries inside.
 
@@ -25,9 +25,9 @@ Solution:
 
 Runtime:
 O(max(Bi)*NlogN), because for a fixed b it takes O(N) time to fill the buckets of size b, plus
-O(NlogN) time to sort the trees (standard knowledge, google sorting algorithm complexity), plus
+O(NlogN) time to sort the trees (standard knowledge, google "sorting algorithm complexity"), plus
 O(N) time to add the remaining berries to the buckets. This is O(NlogN) because NlogN is the dominating 
-term (look up big-O notation). 
+term (google "big-O notation"). 
 
 We do this max(Bi) times for a total complexity of O(max(Bi)*NlogN).
 
