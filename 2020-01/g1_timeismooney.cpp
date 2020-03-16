@@ -20,9 +20,10 @@ We do the above for t = 1,...,1000 and write the answer to the output file.
 
 */
 
-// when the gcc compiler reads this header it imports all standard libraries
-// google "gcc bits/stdc++.h"
-#include <bits/stdc++.h>
+// include std libs
+#include <iostream>
+#include <vector>
+#include <algorithm>
 // use standard namespace to omit the std:: from standard functions
 // google 'std namespace'
 using namespace std;
