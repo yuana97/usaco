@@ -30,9 +30,9 @@ keep a frequency map of integers in Ai,...,Ak and set num[i][k] = frequency(-Ai-
 */
 
 import java.io.*;
- 
+
 public class g2_threesum {
-	public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException {
     // initialize file reader
     BufferedReader in = new BufferedReader(new FileReader("threesum.in"));
     // initialize file writer
@@ -40,51 +40,54 @@ public class g2_threesum {
     // get array of values from first line
     String[] line = in.readLine().split(" ");
     // read in N and Q from first line
-		int N = Integer.parseInt(line[0]);
+    int N = Integer.parseInt(line[0]);
     int Q = Integer.parseInt(line[1]);
     // get array of values from second line
     line = in.readLine().split(" ");
     // initialize A
-    int[] A = new int[N]; 
+    int[] A = new int[N];
     // ans[i][k] = num[i][k] at first
     // then we do dynamic programming to make ans[i][k]=answer for Ai,..,Ak
     long[][] ans = new long[N][N];
     // read in integer values to A
-    for (int i = 0; i < N; ++i) A[i] = Integer.parseInt(line[i]);
+    for (int i = 0; i < N; ++i)
+      A[i] = Integer.parseInt(line[i]);
     // initialize frequency map
-    // z[0]=frequency(-10^6), z[1]=frequency(-10^6+1),...,z[10^6]=frequency(0),...,z[2*10^6]=frequency(10^6).
+    // z[0]=frequency(-10^6),
+    // z[1]=frequency(-10^6+1),...,z[10^6]=frequency(0),...,z[2*10^6]=frequency(10^6).
     int[] z = new int[2000001];
     // for every pair of indexes i<j
-		for (int i = N-1; i >= 0; --i) {
-			for (int j = i+1; j < N; ++j) {
+    for (int i = N - 1; i >= 0; --i) {
+      for (int j = i + 1; j < N; ++j) {
         // get index of -Ai-Aj
-        int ind = 1000000-A[i]-A[j];
+        int ind = 1000000 - A[i] - A[j];
         // do a bounds check and set num[i][j] = frequency(-Ai-Aj)
-        if (ind >= 0 && ind <= 2000000) ans[i][j] = z[ind];
+        if (ind >= 0 && ind <= 2000000)
+          ans[i][j] = z[ind];
         // increment the frequency of the jth number
-				z[1000000+A[j]] ++;
+        z[1000000 + A[j]]++;
       }
       // clear the frequency map
-			for (int j = i+1; j < N; ++j) {
-				z[1000000+A[j]] --;
-			}
+      for (int j = i + 1; j < N; ++j) {
+        z[1000000 + A[j]]--;
+      }
     }
     // use the equation ans[i][j]=num[i][j]+ans[i+1][j]+ans[i][j-1]-ans[i+1][j-1]
     // to fill ans.
-		for (int i = N-1; i >= 0; --i) 
-			for (int j = i+1; j < N; ++j)
-        ans[i][j] += ans[i+1][j]+ans[i][j-1]-ans[i+1][j-1];
+    for (int i = N - 1; i >= 0; --i)
+      for (int j = i + 1; j < N; ++j)
+        ans[i][j] += ans[i + 1][j] + ans[i][j - 1] - ans[i + 1][j - 1];
     // for each pair of indexes, print the answer
-		for (int i = 0; i < Q; ++i) {
+    for (int i = 0; i < Q; ++i) {
       // read in next pair of indexes to an array
       line = in.readLine().split(" ");
       // parse them to integers
-			int a = Integer.parseInt(line[0]);
+      int a = Integer.parseInt(line[0]);
       int b = Integer.parseInt(line[1]);
       // look up the answer in ans and write it to out
-			out.println(ans[a-1][b-1]);
+      out.println(ans[a - 1][b - 1]);
     }
     // close the write stream
-		out.close();
-	}
+    out.close();
+  }
 }
