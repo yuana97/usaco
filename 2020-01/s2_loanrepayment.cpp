@@ -15,6 +15,8 @@ Y does not change with every payment when X is sufficiently large: for a given N
 it will take num = ((N-G)%X)/Y + 1 days for Y to decrease. We skip calculating Y for these days
 and instead just add num*Y to G and decrease K by num.
 
+Summary:
+Binary search for X. For a fixed X skip the days Y is unchanged.
 */
 
 #include <stdio.h>

@@ -4,16 +4,16 @@ N cows in order represented by permutation of N, M wormholes from ai to bi.
 Cows go thru wormholes until they are sorted. Maximize the width of the
 least-wide wormhole they go thru.
 
-Input:
-N, M then the permutation of N, then M triples ai,bi,wi.
-
 Solution: 
-Binary search on the answer x. For all wormholes with width >+ x,
+Binary search on the answer x. For all wormholes with width >= x,
 draw an edge between ai and bi. Possible to sort cows with wormholes of width at least
 x iff resulting graph is connected.
 
 To see this is true, consider the case when edges form a tree. Can always
 swap until leaf contains correct cow. Then remove leaf and continue.
+
+Summary:
+Binary search for x. For a fixed x form the graph of valid wormholes and check if its connected.
 */
 
 import java.io.*;
