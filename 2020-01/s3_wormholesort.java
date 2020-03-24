@@ -45,7 +45,10 @@ public class s3_wormholesort {
       int a = Integer.parseInt(st.nextToken())-1;
       int b = Integer.parseInt(st.nextToken())-1;
       int w = Integer.parseInt(st.nextToken());
+      // edges[a] contains the wormholes coming out of a
+      // a points to b with a wormhole of width w
       edges[a].add(new Edge(b, w));
+      // b points to a with a wormhole of width w
       edges[b].add(new Edge(a, w));
     }
     br.close();
@@ -53,9 +56,13 @@ public class s3_wormholesort {
     int minW = 0;
     int maxW = 1000000001;
     // binary search for minimum width
+    // minW = maximum width which works so far
+    // maxW = minimum width which doesn't work so far
     while(minW != maxW) {
       int mid = (minW + maxW + 1) / 2;
+      // valid => look for larger W
       if(valid(mid)) minW = mid;
+      // invalid => look for smaller W
       else maxW = mid-1;
     }
     // error handling
@@ -71,8 +78,11 @@ public class s3_wormholesort {
   static int[] component;
   // label current vertex and search all children. 
   private static void dfs(int curr, int label, int minW) {
+    // if this vertex has already veen found, skip it
     if(component[curr] == label) return;
+    // label this vertex as part of the current connected component
     component[curr] = label;
+    // label all children which are wide enough
     for(Edge child: edges[curr]) if(child.w >= minW) dfs(child.d, label, minW);
   }
   // valid: if resulting graph with given minw is connected
@@ -94,6 +104,7 @@ public class s3_wormholesort {
     }
     return true;
   }
+  // edge indicates a wormhole to destination d with width w.
   static class Edge {
     int d, w;
     public Edge(int d, int w) {
