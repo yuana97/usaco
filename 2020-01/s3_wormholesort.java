@@ -18,7 +18,7 @@ swap until leaf contains correct cow. Then remove leaf and continue.
 
 import java.io.*;
 import java.util.*;
-public class wormsort {
+public class s3_wormholesort {
   public static void main(String[] args) throws IOException{
     // init bufferedreader of wormsort.in
     BufferedReader br = new BufferedReader(new FileReader("wormsort.in"));

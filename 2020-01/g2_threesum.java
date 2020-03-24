@@ -8,9 +8,11 @@ Solution:
 For each pair (i, k) such that i < k let num[i][k] be the number of j between i and k
 such that Ai + Aj + Ak = 0. Let ans[i][k] = 3SUM for Ai,...,Ak.
 Then ans[i][k] = num[i][k] + ans[i][k-1] + ans[i+1][k] - ans[i+1][k-1].
-Explanation: num[i][k] = add solutions on border of Ai,..,Ak,
-ans[i][k-1]+ans[i+1][k] = add all solutions from left and right subarrays
-- ans[i+1][k+1] = subtract doublecounted solutions from the middle.
+Explanation: num[i][k] = add solutions using both Ai and Ak
+ans[i][k-1] = add solutions not using Ak
+ans[i+1][k] = add solutions not using Ai
+- ans[i+1][k+1] = subtract doublecounted solutions using neither Ai nor Ak
+All together this gives ans[i][k]=#{solutions using both Ai and Ak} + #{solutions not using both Ai and Ak}
 
 Hence to compute all ans[i][k] it suffices to compute num[i][k] and use dynamic programming.
 To compute num[i][i+1],...,num[i][N] in O(N) time, do the following. For k = i+1,...,N consider
